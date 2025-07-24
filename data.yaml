@@ -1,0 +1,17 @@
+path: ./coco_corner_dataset  # Root dataset directory
+train: images                # Train images (relative to path)
+val: images                  # You can separate val if needed
+
+# Class names (1 class: card)
+names:
+  0: card
+
+# Keypoint configuration
+kpt_shape: [4, 2]  # 4 keypoints, each with x and y
+
+# Keypoint names
+keynames:
+  0: top_left
+  1: top_right
+  2: bottom_right
+  3: bottom_left

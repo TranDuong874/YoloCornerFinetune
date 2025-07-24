@@ -1,0 +1,9 @@
+task: pose
+model: pretrained_model/yolov8s.pt
+data: data.yaml
+epochs: 100
+imgsz: 640
+batch: 16
+device: 0  # use "cpu" if not using GPU
+workers: 4
+patience: 20

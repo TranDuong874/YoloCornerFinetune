@@ -8,7 +8,7 @@ Training:
   save_period: 10  # Save checkpoint every N epochs
   cache: true      # Cache images for faster training
   augment: true    # Enable data augmentation
-
+  device: 0,1
 Dataset:
   data_yaml_path: 'yolov8_pose_dataset/dataset.yaml'
 

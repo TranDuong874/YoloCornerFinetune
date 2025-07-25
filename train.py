@@ -26,7 +26,7 @@ def train_model(config_path):
         epochs=training_config['epochs'],
         imgsz=training_config['img_size'],
         batch=training_config['batch_size'],
-        device=device,
+        device=training_config['device'],
         project=training_config['project'],
         name=training_config['name'],
         save=True,

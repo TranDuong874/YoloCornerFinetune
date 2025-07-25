@@ -1,6 +1,35 @@
 from ultralytics import YOLO
 import yaml
 import torch
+import albumentations as A
+from ultralytics.data.augment import Albumentations
+
+def get_custom_augmentations(cfg):
+    transforms = []
+
+    if cfg.get('gaussian_noise'):
+        transforms.append(A.GaussNoise(
+            var_limit=cfg['gaussian_noise']['var_limit'], 
+            p=cfg['gaussian_noise']['prob']))
+
+    if cfg.get('blur'):
+        transforms.append(A.Blur(
+            blur_limit=cfg['blur']['blur_limit'], 
+            p=cfg['blur']['prob']))
+
+    if cfg.get('motion_blur'):
+        transforms.append(A.MotionBlur(
+            blur_limit=cfg['motion_blur']['blur_limit'], 
+            p=cfg['motion_blur']['prob']))
+
+    if cfg.get('image_compression'):
+        transforms.append(A.ImageCompression(
+            quality_lower=['image_compression']['lower'], 
+            quality_upper=['image_compression']['upper'], 
+            p=cfg['image_compression']['prob']))
+
+
+    return Albumentations(A.Compose(transforms)) if transforms else None
 
 def load_config(config_path):
     """Load training configuration from YAML file"""
@@ -17,6 +46,8 @@ def train_model(config_path):
     aug_config = config['Augmentations']
     
     model = YOLO(training_config['model_path'])
+    
+    custom_aug = get_custom_augmentations(aug_config)
     
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print(f"Using device: {device}")
@@ -46,8 +77,19 @@ def train_model(config_path):
         fliplr=aug_config['fliplr'],
         hsv_h=aug_config['hsv_h'],
         hsv_s=aug_config['hsv_s'],
-        hsv_v=aug_config['hsv_v']
+        hsv_v=aug_config['hsv_v'],
+        
+        augmentations=custom_aug
     )
+
+    if hasattr(model, "trainer"):
+        print("Training completed!")
+        print(f"Results saved to: {model.trainer.save_dir}")
+        if model.metrics:
+            print(f"mAP50: {model.metrics.get('metrics/mAP50(B)', 'N/A')}")
+    else:
+        print("Training may have failed or was distributed.")
+
     
     print("Training completed!")
     print(f"Results saved to: {results.save_dir}")

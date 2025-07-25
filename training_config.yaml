@@ -1,5 +1,5 @@
 Training:
-  model_path: 'yolov8n-pose.pt'  # Pre-trained model (n, s, m, l, x)
+  model_path: '/kaggle/working/YoloCornerFinetune/pretrained_model/yolov8s-pose.pt'   # Pre-trained model (n, s, m, l, x)
   epochs: 100
   img_size: 640
   batch_size: 16
@@ -10,16 +10,16 @@ Training:
   augment: true    # Enable data augmentation
   device: 0,1
 Dataset:
-  data_yaml_path: 'yolov8_pose_dataset/dataset.yaml'
+  data_yaml_path:  '/kaggle/working/YoloCornerFinetune/data.yaml'
 
 Augmentations:
   # Geometric augmentations
-  mosaic: 0.5        # Mosaic augmentation probability
-  mixup: 0.1         # Mixup augmentation probability
+  mosaic: 0.0        # Mosaic augmentation probability
+  mixup: 0.0         # Mixup augmentation probability
   degrees: 90        # Rotation range (-degrees to +degrees)
   translate: 0.1     # Translation fraction of image size
   scale: 0.5         # Scale range (1-scale to 1+scale)
-  shear: 2.0         # Shear angle range
+  shear: 0.0         # Shear angle range
   perspective: 0.1 # Perspective transformation
   
   # Flip augmentations
@@ -27,6 +27,23 @@ Augmentations:
   fliplr: 0.5        # Horizontal flip probability
   
   # Color augmentations
-  hsv_h: 0.015       # Hue augmentation range
+  hsv_h: 0.1         # Hue augmentation range
   hsv_s: 0.7         # Saturation augmentation range  
-  hsv_v: 0.4         # Value (brightness) augmentation range
+  hsv_v: 0.7         # Value (brightness) augmentation range
+
+  gaussian_noise:
+    prob: 0.5
+    var_limit: [10.0, 50.0]
+    
+  blur:
+    prob: 0.5
+    blur_limit: 3
+
+  motion_blur: 
+    prob: 0.5
+    blur_limit: 5
+
+  image_compression:
+    prob: 0.5
+    lower: 50
+    upper: 90

@@ -24,8 +24,8 @@ def get_custom_augmentations(cfg):
 
     if cfg.get('image_compression'):
         transforms.append(A.ImageCompression(
-            quality_lower=['image_compression']['lower'], 
-            quality_upper=['image_compression']['upper'], 
+            quality_lower=cfg['image_compression']['lower'], 
+            quality_upper=cfg['image_compression']['upper'], 
             p=cfg['image_compression']['prob']))
 
 

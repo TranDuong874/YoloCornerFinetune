@@ -1,17 +1,19 @@
 path: ./coco_corner_dataset  # Root dataset directory
-train: images                # Train images (relative to path)
-val: images                  # You can separate val if needed
+train: train/images              # Point to images, not labels
+val: val/images                  # Point to images, not labels
 
-# Class names (1 class: card)
+nc: 1                           # Number of classes (required)
 names:
   0: card
 
-# Keypoint configuration
-kpt_shape: [4, 2]  # 4 keypoints, each with x and y
+kpt_shape: [4, 3]               # 4 keypoints, each with x, y, visibility
+                                # MUST be 3 values per keypoint for YOLOv8 pose
 
-# Keypoint names
+flip_idx: []                    # No symmetric keypoints for card corners
+
+# Optional but recommended - keypoint names for visualization
 keynames:
   0: top_left
-  1: top_right
+  1: top_right  
   2: bottom_right
   3: bottom_left

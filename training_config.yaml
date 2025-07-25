@@ -33,7 +33,7 @@ Augmentations:
 
   gaussian_noise:
     prob: 0.5
-    var_limit: [10.0, 50.0]
+    var_limit: [10, 50]
     
   blur:
     prob: 0.5

@@ -9,6 +9,10 @@ Training:
   cache: true      # Cache images for faster training
   augment: true    # Enable data augmentation
   device: 0,1
+  loss:
+    kpt: 4.0
+    bop: 3.0
+  
 Dataset:
   data_yaml_path:  '/kaggle/working/YoloCornerFinetune/data.yaml'
 

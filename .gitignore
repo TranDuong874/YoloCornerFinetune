@@ -1,4 +1,6 @@
 coco_corner_dataset
 yolov8_pose_dataset
 real_and_synthetic_corner_dataset
+real_and_synthetic_corner_dataset_blurred
+yolov8_pose_blurred_dataset
 *.zip

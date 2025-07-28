@@ -159,9 +159,9 @@ class YOLOv8PoseConverter:
 # Usage example
 def main():
     # Update these paths according to your setup
-    csv_path = "real_and_synthetic_corner_dataset/labels.csv"
-    images_dir = "real_and_synthetic_corner_dataset/images"
-    output_dir = "yolov8_pose_dataset"
+    csv_path = "real_and_synthetic_corner_dataset_blurred/labels.csv"
+    images_dir = "real_and_synthetic_corner_dataset_blurred/images"
+    output_dir = "yolov8_pose_blurred_dataset"
     
     # Create converter and convert dataset
     converter = YOLOv8PoseConverter(csv_path, images_dir, output_dir)

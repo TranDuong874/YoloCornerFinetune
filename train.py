@@ -17,7 +17,8 @@ def train_model(config_path):
     aug_config = config['Augmentations']
     
     model = YOLO(training_config['model_path'])
-    
+    loss_config = training_config.get('loss', {})
+
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print(f"Using device: {device}")
     
@@ -46,7 +47,11 @@ def train_model(config_path):
         fliplr=aug_config['fliplr'],
         hsv_h=aug_config['hsv_h'],
         hsv_s=aug_config['hsv_s'],
-        hsv_v=aug_config['hsv_v']
+        hsv_v=aug_config['hsv_v'],
+
+        # Loss config
+        kpt=loss_config.get('kpt', 1.0),  # Default = 1.0
+        box=loss_config.get('box', 7.5), # Default = 7.5
     )
 
     if hasattr(model, "trainer"):

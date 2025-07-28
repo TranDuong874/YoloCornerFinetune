@@ -49,9 +49,11 @@ def train_model(config_path):
         hsv_s=aug_config['hsv_s'],
         hsv_v=aug_config['hsv_v'],
 
-        # Loss config
-        kpt=loss_config.get('kpt', 1.0),  # Default = 1.0
-        box=loss_config.get('box', 7.5), # Default = 7.5
+        # Training loss weight
+        box=loss_config.get('box', 7.5),
+        cls=loss_config.get('cls', 0.5), 
+        pose=loss_config.get('pose', 1.0), 
+        kobj=loss_config.get('kobj', 2.0), 
     )
 
     if hasattr(model, "trainer"):

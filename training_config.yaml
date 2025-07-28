@@ -10,8 +10,10 @@ Training:
   augment: true    # Enable data augmentation
   device: 0,1
   loss:
-    kpt: 4.0
+    pose: 4.0
     bop: 3.0
+    kobj: 2.0
+    cls: 0.5
   
 Dataset:
   data_yaml_path:  '/kaggle/working/YoloCornerFinetune/data.yaml'

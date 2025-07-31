@@ -53,7 +53,8 @@ def train_model(config_path):
         box=loss_config.get('box', 7.5),
         cls=loss_config.get('cls', 0.5), 
         pose=loss_config.get('pose', 1.0), 
-        kobj=loss_config.get('kobj', 2.0), 
+        kobj=loss_config.get('kobj', 2.0),
+        patience=training_config['patience']
     )
 
     if hasattr(model, "trainer"):

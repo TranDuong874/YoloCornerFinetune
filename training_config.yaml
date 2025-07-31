@@ -11,9 +11,10 @@ Training:
   device: 0,1
   loss:
     pose: 4.0
-    bop: 3.0
+    box: 3.0
     kobj: 2.0
     cls: 0.5
+  paticence: 0
   
 Dataset:
   data_yaml_path:  '/kaggle/working/YoloCornerFinetune/data.yaml'
@@ -36,3 +37,4 @@ Augmentations:
   hsv_h: 0.1         # Hue augmentation range
   hsv_s: 0.7         # Saturation augmentation range  
   hsv_v: 0.7         # Value (brightness) augmentation range
+
